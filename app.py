@@ -89,18 +89,18 @@ For co2_impact_kg: estimate the approximate kg of CO2-equivalent emissions avoid
 For eco_points: award 5 for Landfill items (still tried), 10 for Recyclable/Compostable, 15 for Hazardous (extra care needed). Return only the number.
 All text fields (explanation, disposal_steps, environmental_tip) must be written in {language}, but item_name and category should stay in English."""
 
-   url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent"
-   headers = {"x-goog-api-key": key, "Content-Type": "application/json"}
-   payload = {
-       "contents": [{
-           "parts": [
-               {"text": prompt},
-               {"inline_data": {"mime_type": "image/jpeg", "data": img_base64}}
-           ]
-       }]
-   }
-   response = requests.post(url, headers=headers, json=payload, timeout=30)
-   response.raise_for_status()
+    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent"
+    headers = {"x-goog-api-key": key, "Content-Type": "application/json"}
+    payload = {
+        "contents": [{
+            "parts": [
+                {"text": prompt},
+                {"inline_data": {"mime_type": "image/jpeg", "data": img_base64}}
+            ]
+        }]
+    }
+    response = requests.post(url, headers=headers, json=payload, timeout=30)
+    response.raise_for_status()
     data = response.json()
     text = data["candidates"][0]["content"]["parts"][0]["text"].strip()
     # Strip markdown code fences if present
