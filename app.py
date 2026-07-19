@@ -63,7 +63,7 @@ CATEGORY_STYLE = {
 
 def analyze_waste(image, key, language="English"):
     genai.configure(api_key=key)
-    model = genai.GenerativeModel("gemini-2.0-flash")
+   model = genai.GenerativeModel("gemini-1.5-flash")
     prompt = f"""You are a waste management expert for Indian households. Look at this image of a waste item and respond ONLY with valid JSON (no markdown, no extra text) in exactly this format:
 
 {{
